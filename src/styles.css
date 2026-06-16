@@ -1,0 +1,71 @@
+@source "../node_modules/@cloudflare/kumo/dist/**/*.{js,jsx,ts,tsx}";
+@import "@cloudflare/kumo/styles/tailwind";
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+
+@layer base {
+  html {
+    font-family: "SF Compact", sans-serif;
+    /* Crisper text on macOS. */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color-scheme: light;
+  }
+
+  body {
+    /* Kumo's neutral canvas - matches the Cloudflare dashboard surface. */
+    background-color: var(--color-kumo-canvas);
+    color: var(--color-kumo-default);
+  }
+
+  /* Headings: avoid lonely words on the last line. */
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  /* Body copy: kill orphans. */
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@layer utilities {
+  /* Dynamically changing numbers shouldn't shift layout. */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* A subtle, consistent edge on images regardless of background.
+     Pure black at low opacity - never a tinted neutral. */
+  .img-outline {
+    outline: 1px solid rgba(0, 0, 0, 0.1);
+    outline-offset: -1px;
+  }
+
+  /* Staggered enter: fade + rise. Paired with inline animation-delay.
+     Starts hidden so there's no flash before the delay kicks in. */
+  .enter {
+    opacity: 0;
+    animation: enter-fade-up 0.32s cubic-bezier(0.2, 0, 0, 1) forwards;
+  }
+
+  @keyframes enter-fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .enter {
+      opacity: 1;
+      animation: none;
+    }
+  }
+}
