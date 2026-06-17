@@ -7,6 +7,7 @@ import {
   Crosshair,
   Braces,
   Link2,
+  Rss,
 } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 
@@ -176,6 +177,25 @@ const brand = await page.evaluate(readBrandFromDOM)`,
   url,
   excludeExternalLinks: true,
 })`,
+  },
+  {
+    slug: "feed",
+    title: "Turn a page into an RSS feed",
+    tagline: "Point it at any blog or news page, get a subscribable feed.",
+    blurb:
+      "Plenty of sites dropped their RSS feeds. Browser Run renders the page and an AI model picks out the articles - title, link, date - then we serialize them to RSS 2.0 XML. The result is a real feed URL (GET /api/feed?url=...) you can paste straight into any reader.",
+    icon: Rss,
+    accent: {
+      chip: "bg-orange-100",
+      icon: "text-orange-600",
+      ring: "hover:ring-orange-200",
+    },
+    snippet: `const { result } = await env.BROWSER.quickAction("json", {
+  url,
+  prompt: "Extract every article: title, link, date",
+  response_format: { type: "json_schema", schema },
+})
+// → serialize result.items to RSS 2.0 XML`,
   },
 ]
 

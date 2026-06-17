@@ -59,7 +59,7 @@ function SiteFooter() {
           on a real headless browser.
         </p>
         <a
-          href="https://github.com"
+          href="https://github.com/fayazara/what-can-brower-run-do"
           target="_blank"
           rel="noreferrer"
           className="font-medium text-kumo-subtle transition-colors hover:text-kumo-default"

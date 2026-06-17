@@ -20,6 +20,7 @@ import { Route as ApiMarkdownRouteImport } from './routes/api/markdown'
 import { Route as ApiLinksRouteImport } from './routes/api/links'
 import { Route as ApiItemsRouteImport } from './routes/api/items'
 import { Route as ApiFilesRouteImport } from './routes/api/files'
+import { Route as ApiFeedRouteImport } from './routes/api/feed'
 import { Route as ApiExtractRouteImport } from './routes/api/extract'
 import { Route as ApiBrandRouteImport } from './routes/api/brand'
 
@@ -78,6 +79,11 @@ const ApiFilesRoute = ApiFilesRouteImport.update({
   path: '/api/files',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiFeedRoute = ApiFeedRouteImport.update({
+  id: '/api/feed',
+  path: '/api/feed',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiExtractRoute = ApiExtractRouteImport.update({
   id: '/api/extract',
   path: '/api/extract',
@@ -94,6 +100,7 @@ export interface FileRoutesByFullPath {
   '/$slug': typeof SlugRoute
   '/api/brand': typeof ApiBrandRoute
   '/api/extract': typeof ApiExtractRoute
+  '/api/feed': typeof ApiFeedRoute
   '/api/files': typeof ApiFilesRoute
   '/api/items': typeof ApiItemsRoute
   '/api/links': typeof ApiLinksRoute
@@ -109,6 +116,7 @@ export interface FileRoutesByTo {
   '/$slug': typeof SlugRoute
   '/api/brand': typeof ApiBrandRoute
   '/api/extract': typeof ApiExtractRoute
+  '/api/feed': typeof ApiFeedRoute
   '/api/files': typeof ApiFilesRoute
   '/api/items': typeof ApiItemsRoute
   '/api/links': typeof ApiLinksRoute
@@ -125,6 +133,7 @@ export interface FileRoutesById {
   '/$slug': typeof SlugRoute
   '/api/brand': typeof ApiBrandRoute
   '/api/extract': typeof ApiExtractRoute
+  '/api/feed': typeof ApiFeedRoute
   '/api/files': typeof ApiFilesRoute
   '/api/items': typeof ApiItemsRoute
   '/api/links': typeof ApiLinksRoute
@@ -142,6 +151,7 @@ export interface FileRouteTypes {
     | '/$slug'
     | '/api/brand'
     | '/api/extract'
+    | '/api/feed'
     | '/api/files'
     | '/api/items'
     | '/api/links'
@@ -157,6 +167,7 @@ export interface FileRouteTypes {
     | '/$slug'
     | '/api/brand'
     | '/api/extract'
+    | '/api/feed'
     | '/api/files'
     | '/api/items'
     | '/api/links'
@@ -172,6 +183,7 @@ export interface FileRouteTypes {
     | '/$slug'
     | '/api/brand'
     | '/api/extract'
+    | '/api/feed'
     | '/api/files'
     | '/api/items'
     | '/api/links'
@@ -188,6 +200,7 @@ export interface RootRouteChildren {
   SlugRoute: typeof SlugRoute
   ApiBrandRoute: typeof ApiBrandRoute
   ApiExtractRoute: typeof ApiExtractRoute
+  ApiFeedRoute: typeof ApiFeedRoute
   ApiFilesRoute: typeof ApiFilesRoute
   ApiItemsRoute: typeof ApiItemsRoute
   ApiLinksRoute: typeof ApiLinksRoute
@@ -278,6 +291,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiFilesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/feed': {
+      id: '/api/feed'
+      path: '/api/feed'
+      fullPath: '/api/feed'
+      preLoaderRoute: typeof ApiFeedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/extract': {
       id: '/api/extract'
       path: '/api/extract'
@@ -300,6 +320,7 @@ const rootRouteChildren: RootRouteChildren = {
   SlugRoute: SlugRoute,
   ApiBrandRoute: ApiBrandRoute,
   ApiExtractRoute: ApiExtractRoute,
+  ApiFeedRoute: ApiFeedRoute,
   ApiFilesRoute: ApiFilesRoute,
   ApiItemsRoute: ApiItemsRoute,
   ApiLinksRoute: ApiLinksRoute,

@@ -10,6 +10,7 @@ import { SnapshotDemo } from "@/components/demos/snapshot-demo"
 import { ScrapeDemo } from "@/components/demos/scrape-demo"
 import { ExtractDemo } from "@/components/demos/extract-demo"
 import { LinksDemo } from "@/components/demos/links-demo"
+import { FeedDemo } from "@/components/demos/feed-demo"
 
 /** Maps each use-case slug to its interactive demo component. */
 const DEMOS: Record<string, ComponentType> = {
@@ -21,6 +22,7 @@ const DEMOS: Record<string, ComponentType> = {
   scrape: ScrapeDemo,
   extract: ExtractDemo,
   links: LinksDemo,
+  feed: FeedDemo,
 }
 
 export const Route = createFileRoute("/$slug")({
